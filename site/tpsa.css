@@ -92,31 +92,24 @@ footer {
   }
 }
 /* navbar */
-/* remove all px for responsive maybe not */
 .navbar {
-  /* font-size: 2vw; this adds the scaling probably not the best idea for this */
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: var(--tpsa-blue);
-  /* min-width: 400px; I need to add a media queries to change it when it gets this small */
-  /* height: 5vw;
-  z-index: 3; */
   font-size: 25px;
 }
 
 @media (max-width: 490px) {
   .navbar {
-    font-size: min(15px, 3.75vw);
+    font-size: min(15px,3.75vw);
     min-width: 100px;
   }
-  
-  .bye-490 {
+  .bye-490{
     display: none;
   }
 }
-
 
 li {
   float: left;
@@ -141,21 +134,19 @@ li.dropdown {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: var(--dropdown-grey);
+  background-color: var(--dropdown-grey); ;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   min-width: 220px;
 }
 
 @media (max-width: 490px) {
-  .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: var(--dropdown-grey);
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  min-width: 220px;
-}
+  .dropdown-content{
+    min-width: 200px
+  }
+  .dropdown-content-cut{
+    min-width: 100px !important;
+  }
 }
 
 
@@ -426,6 +417,7 @@ img.hero-content {
   text-align: center;
   box-shadow: 0 5px 6px 1px var(--tpsa-blue);
   padding: min(4vw, 40px);
+  text-align: justify;
 }
 
 .history-images-box {
