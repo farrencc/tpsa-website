@@ -1,3 +1,15 @@
+:root {
+  --tpsa-blue: #597bb0;
+  --tpsa-blue-hover: #aac5db;
+  --tpsa-blue-semi: rgba(89, 123, 176, 0.5);
+  --problem-solving-green: #32e875;
+  --committee-subtitle-gray: #5d636b;
+  --pending-grey: #bbbbbb;
+  --dropdown-grey: #f1f1f1;
+  --hero-aspect-ratio: 0.553314;
+  --spacing-2vw: 2vw;
+}
+
 /**/
 .flex-col{
   display: flex;
@@ -35,6 +47,7 @@ h1 {
 h2 {
   font-size: 35px;
 }
+
 h3 {
   font-size: 30px;
 }
@@ -45,31 +58,37 @@ li {
 body {
   background-color: #ffffff;
 }
-footer{
-  background-color: #597bb0;
+
+footer {
+  background-color: var(--tpsa-blue);
 }
 
-.only-mobile{
+.only-mobile {
   display: none;
 }
 @media (max-width: 650px) {
-  .only-mobile{
+  .only-mobile {
     display: inline-block;
   }
-  p{
-    font-size: 17px ;
+  
+  p {
+    font-size: 17px;
   }
+  
   li {
     font-size: 17px;
   }
+  
   h1 {
     font-size: 28px;
   }
+  
   h2 {
-  font-size: 24px;
+    font-size: 24px;
   }
-  h3{
-  font-size: 20px;
+  
+  h3 {
+    font-size: 20px;
   }
 }
 /*navbar*/
@@ -80,7 +99,7 @@ footer{
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #597bb0;
+  background-color: var(--tpsa-blue);
   /*min-width: 400px;  I need to add a media queries to change it when it gets this small*/
   /*height: 5vw;
   z-index: 3;*/
@@ -111,7 +130,7 @@ li a, .dropbtn {
 }
 
 li a:hover, .dropdown:hover .dropbtn {
-  background-color: #aac5db;
+  background-color: var(--tpsa-blue-hover);
 }
 
 li.dropdown {
@@ -121,7 +140,7 @@ li.dropdown {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color:#f1f1f1 ;
+  background-color: var(--dropdown-grey);
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   min-width: 220px;
@@ -154,7 +173,7 @@ li.dropdown {
   background-size: contain;
   background-repeat: no-repeat;
   width: 100%;
-  height: calc(0.553314*100vw); /* 0.55.. is the aspect ratio of bkgr.png*/
+  height: calc(var(--hero-aspect-ratio)*100vw); /* aspect ratio of bkgr.png*/
  }
 
 @media (max-width: 540px) {
@@ -163,14 +182,12 @@ li.dropdown {
   }
 }
 .hero-content{
- /*background-color:green;*/
  width:87.5%;
- height: calc(0.553314*87.5vw);
+ height: calc(var(--hero-aspect-ratio)*87.5vw);
  margin: auto;/*this centers the green box*/
  display: flex;
  flex-direction: row;
  align-items: center;
- /*text-align:center;*/
  justify-content: center;
 }
 h1.hero-text {
@@ -197,18 +214,14 @@ height: auto;
 
 .button-hero {
   display: inline-block;
-  /*background-color: #597bb0;*/
-  background-color: rgba(89,123,176,0.5);
+  background-color: var(--tpsa-blue-semi);
   border: none;
   color: white;
   padding: 1vw 20vw;
-  /*padding: 15px 32px;*/
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 2.5vw;
   font-weight: bold;
-  /*margin: 4px 2px;*/
   cursor: pointer;
   -webkit-transition-duration: 0.2s;
   transition-duration: 0.2s;
@@ -216,19 +229,15 @@ height: auto;
 
 .button-big {
   display: inline-block;
-  /*background-color: #597bb0;*/
-  background-color: #597bb0;
+  background-color: var(--tpsa-blue);
   border: none;
   color: white;
   padding: 1vw 20vw;
-  /*padding: 15px 32px;*/
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 2.5vw;
   font-weight: bold;
   margin: auto;
-  /*margin: 4px 2px;*/
   cursor: pointer;
   -webkit-transition-duration: 0.2s;
   transition-duration: 0.2s;
@@ -248,18 +257,16 @@ height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 2vw;
-  padding: 2vw;
-  /*box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 6px 1px #597bb0;*/
-  gap: 1vw;
+  margin: var(--spacing-2vw);
+  padding: var(--spacing-2vw);
+  gap: var(--spacing-2vw); /* changed from 1vw */
   text-align: justify;
 }
 
 .text-heading-box{
   /*color: aquamarine;*/
   font-size: medium;
-  padding: 2vw;
+  padding: var(--spacing-2vw);
     text-align: justify;
 
 }
@@ -268,7 +275,7 @@ height: auto;
 .image-box{
   width: 45vw;
   height: auto;
-  margin: 2vw;
+  margin: var(--spacing-2vw);
   border-radius: 0%;
 }
 
@@ -277,22 +284,22 @@ height: auto;
   max-width: 400px;
   min-width: 200px;
   height: auto;
-  margin: 2vw;
+  margin: var(--spacing-2vw);
   border-radius: 0%;
-  padding: 2vw;
+  padding: var(--spacing-2vw);
 }
 
 .image-box-med{
   width: 50vw;
   min-width: 275px;
   height: auto;
-  margin: 2vw;
+  margin: var(--spacing-2vw);
 }
 
 
 .image-small{width: auto;height: 25vw}
-.outer-box{display: flex;flex-direction: column ;align-items: center; margin: 2vw;}
-.image-box-col{display: flex;flex-direction: row;align-items: center;gap: 5vw;margin-bottom: 2vw;}
+.outer-box{display: flex;flex-direction: column ;align-items: center; margin: var(--spacing-2vw);}
+.image-box-col{display: flex;flex-direction: row;align-items: center;gap: 5vw;margin-bottom: var(--spacing-2vw);}
 
 @media (max-width: 650px) {
   .text-image-box{
@@ -315,9 +322,9 @@ height: auto;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center; 
-  gap: 2vw;
+  gap: var(--spacing-2vw);
   /*align-items: center;*/
-  margin: 2vw;
+  margin: var(--spacing-2vw);
   padding: 30px;
   /*align-self: center;*/
 }
@@ -327,7 +334,7 @@ height: auto;
   height: auto;
   overflow: hidden;
   padding: 10px;
-  box-shadow: 0 5px 6px 1px #597bb0;
+  box-shadow: 0 5px 6px 1px var(--tpsa-blue);
   /*text-align: center;*/
   /*box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2);
   text-align: justify;
@@ -365,14 +372,14 @@ height: auto;
   text-align: left;
   font-size: 15px;
   /*box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2);*/
-  box-shadow: 0 5px 6px 1px #597bb0;
-  gap: 2vw;
+  box-shadow: 0 5px 6px 1px var(--tpsa-blue);
+  gap: var(--spacing-2vw);
   text-align: justify;
 }
 
 .button {
   display: inline-block;
-  background-color: #597bb0;
+  background-color: var(--tpsa-blue);
   border: none;
   color: white;
   padding: 15px 32px;
@@ -419,21 +426,21 @@ height: auto;
  /*history*/
  .text-box-col{
   margin: auto;
-  margin-bottom: 2vw;
-  margin-top: 2vw;
+  margin-bottom: var(--spacing-2vw);
+  margin-top: var(--spacing-2vw);
   width: 90vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  box-shadow: 0 5px 6px 1px #597bb0;
+  box-shadow: 0 5px 6px 1px var(--tpsa-blue);
   padding: min(4vw,40px);
  }
 .history-images-box{
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 1vw;
+  padding: var(--spacing-2vw); /* changed from 1vw */
 }
 
 .history-images{
@@ -447,23 +454,6 @@ height: auto;
  }
 
 
-/*.history-image-1{
-  width: auto;
-  height: calc(70%*0.75);
-  overflow: hidden;
-  object-fit: cover;
- }
- .history-image-2{
-  width: auto;
-  height: calc(70%*0.75);
-  overflow: hidden;
-  object-fit: cover;
- }
- @media (max-width: 650px) {
-  .text-box-col{
-    flex-direction: ;
-  }
-}*/
 .sign-up {
 zoom: 1.35;
 }
@@ -476,7 +466,7 @@ zoom: 1.35;
 /*footer*/
 
 .footer{
-  /*background-color: #597bb0;*/
+  /*background-color: var(--tpsa-blue);*/
   display: flex;
   flex-direction: column; /*this is what is stacking the divs*/
   align-items: center;
@@ -523,21 +513,21 @@ width:25vw;
 /*max-width: 200px;
 max-height: calc(20/40*200);*/
 height: 15vw;
-/*margin: 2vw;*/
+/*margin: var(--spacing-2vw);*/
 padding: 2.5vw;
 }
 
 .image-iop{
   width: 100px;
   height: auto;
-  margin: 1vw;
+  margin: var(--spacing-2vw); /* changed from 1vw */
 
 }
 .image-bt{
   width: 175px;
   height: auto;
   /*margin: 3vw;*/
-  padding-left: 1vw;
+  padding-left: var(--spacing-2vw); /* changed from 1vw */
 }
 
 .hosted-text{
@@ -566,7 +556,7 @@ padding: 2.5vw;
     display: none;
     width:200px;
     height: 133px;
-    margin: 2vw;
+    margin: var(--spacing-2vw);
   }
   
   .bottom-tpsa-logo{
@@ -622,16 +612,16 @@ img:hover.shakin {
 }
 
 .blue-back{
-  background-color: #597bb0;
+  background-color: var(--tpsa-blue);
 }
 .blue-center{
   text-align:center;
-  color: #597bb0;
+  color: var(--tpsa-blue);
 }
 
 .grey-center{
   text-align:center;
-  color: #5d636b;
+  color: var(--committee-subtitle-gray);
 }
 
 .no-top{
@@ -642,7 +632,7 @@ img:hover.shakin {
 }
 
 .blue-shadow{
-  box-shadow: 0 5px 6px 1px #597bb0;
+  box-shadow: 0 5px 6px 1px var(--tpsa-blue);
 }
 
 .cut{
