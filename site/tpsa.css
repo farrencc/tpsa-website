@@ -149,6 +149,11 @@ li.dropdown {
 
 @media (max-width: 490px) {
   .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--dropdown-grey);
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
   min-width: 220px;
 }
 }
@@ -188,10 +193,6 @@ li.dropdown {
   width: 87.5%;
   height: calc(var(--hero-aspect-ratio)*87.5vw);
   margin: auto; /* this centers the green box */
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 }
 h1.hero-text {
   margin: 0;
@@ -257,9 +258,6 @@ img.hero-content {
 /* main */
 /* student */
 .text-image-box {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   margin: var(--spacing-2vw);
   padding: var(--spacing-2vw);
   gap: var(--spacing-2vw); /* changed from 1vw */
@@ -303,16 +301,10 @@ img.hero-content {
 }
 
 .outer-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin: var(--spacing-2vw);
 }
 
 .image-box-col {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   gap: 5vw;
   margin-bottom: var(--spacing-2vw);
 }
@@ -340,13 +332,11 @@ img.hero-content {
 .image-wrap-box {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
   justify-content: center;
+  align-items: stretch;
   gap: var(--spacing-2vw);
-  /* align-items: center; */
   margin: var(--spacing-2vw);
   padding: 30px;
-  /* align-self: center; */
 }
 
 .image-committee-box {
@@ -407,11 +397,6 @@ img.hero-content {
 
 /* projects */
 .text-heading-box-fixed {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
   width: 60vw;
   text-align: justify;
   /* width: min(65vw,550px);
@@ -438,18 +423,12 @@ img.hero-content {
   margin-bottom: var(--spacing-2vw);
   margin-top: var(--spacing-2vw);
   width: 90vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   text-align: center;
   box-shadow: 0 5px 6px 1px var(--tpsa-blue);
   padding: min(4vw, 40px);
 }
 
 .history-images-box {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   padding: var(--spacing-2vw); /* changed from 1vw */
 }
 
@@ -458,11 +437,6 @@ img.hero-content {
   height: auto;
 }
 
-.history-image-text {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
 
 @media (max-width: 650px) {
   .history-image-text {
@@ -472,7 +446,7 @@ img.hero-content {
 
 
 .sign-up {
-  zoom: 1.4;
+  zoom: 1.35;
 }
 
 @media (max-width: 650px) {
@@ -482,22 +456,14 @@ img.hero-content {
 }
 /* footer */
 .footer {
-  display: flex;
-  flex-direction: column; /* this is what is stacking the divs */
-  align-items: center;
-  text-align: center;
-  justify-content: center;
+  /* flex properties now handled by utility classes */
   margin: 0;
   border: none;
 }
 
 .footer-content {
   margin: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   text-align: center;
-  justify-content: center;
 }
 
 .footer-text {
@@ -592,6 +558,14 @@ img.hero-content {
     font-size: min(25px, 4vw);
   }
 }
+/*
+between 600-700px
+@media (max-width: 700px) {
+  .footer-text {
+    font-size: 4vw; 
+  }
+}
+*/
 
 /*shakin*/
 img:hover.shakin {
@@ -653,12 +627,6 @@ img:hover.shakin {
 
 
 /* index page */
-.index-outer-box {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  align-self: center;
-}
 
 .index-outer-box a {
   text-decoration: none;
@@ -667,10 +635,6 @@ img:hover.shakin {
 .index-box {
   height: 97.5vh;
   width: 49.25vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   opacity: 0.90;
 }
 
