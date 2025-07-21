@@ -4,3 +4,5 @@ venv/
 site/*.html
 # Don't ignore the main index.html file
 !site/index.html
+# Don't ignore the Problem Sol
+!site/problem_solving.html
