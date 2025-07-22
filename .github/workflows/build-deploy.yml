@@ -1,0 +1,40 @@
+# .github/workflows/build-deploy.yml
+name: Build and Deploy TPSA Website
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v4
+      
+    - name: Build website using tpsa.sh
+      run: |
+        echo "Building TPSA website using ./tpsa.sh"
+        
+        # Make the script executable
+        chmod +x ./tpsa.sh
+        
+        # Run the build script (without 'server' argument)
+        ./tpsa.sh
+        
+        echo "Build completed!"
+        echo "Generated files:"
+        ls -la site/
+        
+    - name: Deploy to production branch
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./site
+        publish_branch: production
+        force_orphan: true
+        user_name: ${{ github.actor }}
+        user_email: 'webmaster@tpsa.ie'
+        commit_message: 'Deploy built site from commit ${{ github.sha }}'
