@@ -7,95 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="tpsa.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
-
-<style>
-/* Popup Modal Styles */
-.popup-overlay {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  animation: fadeIn 0.3s ease;
-}
-
-.popup-content {
-  background-color: #ffffff;
-  margin: 15% auto;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  width: 90%;
-  max-width: 900px;
-  text-align: center;
-  position: relative;
-  animation: slideIn 0.3s ease;
-}
-
-.popup-close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.popup-close:hover,
-.popup-close:focus {
-  color: #597bb0;
-}
-
-.popup-title {
-  color: #597bb0;
-  font-size: 35px;
-  margin-bottom: 15px;
-}
-
-.popup-message {
-  color: #333;
-  font-size: 24px;
-  line-height: 1.5;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideIn {
-  from { 
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  to { 
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 650px) {
-  .popup-content {
-    margin: 20% auto;
-    padding: 20px;
-  }
-  
-  .popup-title {
-    font-size: 24px;
-  }
-  
-  .popup-message {
-    font-size: 17px;
-  }
-}
-</style>
-
 </head>
 <body>
 
@@ -122,7 +33,7 @@
   </li>
   <li class="dropdown">
     <a href="javascript:void(0)" class="dropbtn">About Us</a>
-    <div class="dropdown-content">
+    <div class="dropdown-content dropdown-content-cut">
       <a href="sign-up.html">Sign Up</a>
       <a href="pdf/constitution.pdf" target="_blank" rel="noopener noreferrer">Our Constitution</a>
       <a href="history.html">History</a>
