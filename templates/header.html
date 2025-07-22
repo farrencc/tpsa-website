@@ -8,6 +8,94 @@
 <link rel="stylesheet" href="tpsa.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
 
+<style>
+/* Popup Modal Styles */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease;
+}
+
+.popup-content {
+  background-color: #ffffff;
+  margin: 15% auto;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 900px;
+  text-align: center;
+  position: relative;
+  animation: slideIn 0.3s ease;
+}
+
+.popup-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.popup-close:hover,
+.popup-close:focus {
+  color: #597bb0;
+}
+
+.popup-title {
+  color: #597bb0;
+  font-size: 35px;
+  margin-bottom: 15px;
+}
+
+.popup-message {
+  color: #333;
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { 
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 650px) {
+  .popup-content {
+    margin: 20% auto;
+    padding: 20px;
+  }
+  
+  .popup-title {
+    font-size: 24px;
+  }
+  
+  .popup-message {
+    font-size: 17px;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -21,15 +109,15 @@
       <a href="projects.html#LS">Lecture Series</a>      
       <a href="projects.html#plancks">Plancks</a>
       <a href="projects.html#hackathons">Hackathons & Workshops</a>
-      <a style="color: #bbbbbb;" href="javascript:void(0)">The Non-Profit</a>
+      <a style="color: #bbbbbb;" href="#" onclick="showPopup('The Non-Profit', 'This section is currently under development. Our sister non-profit organization, <a href=&quot;problem-solving.html&quot; style=&quot;color: #597bb0; text-decoration: underline;&quot;>The Problem Solving Association CLG</a>, focuses on applying theoretical physics skills for societal benefit. Check back soon for more details on our joint efforts together!')">The Non-Profit</a>
 
     </div>
   </li>
   <li class="dropdown">
     <a href="javascript:void(0)" class="dropbtn">Resources</a>
     <div class="dropdown-content">
-      <a style="color: #bbbbbb" href="javascript:void(0)">Internships</a>
-    <!--<a href="javascript:void(0)">Modules</a>-->
+      <a style="color: #bbbbbb" href="#" onclick="showPopup('Internships', 'Our internships page is coming soon! We are working on compiling comprehensive information about internship opportunities for theoretical physics students.')">Internships</a>
+      <a style="color: #bbbbbb" href="#" onclick="showPopup('Module Options', 'Coming soon! We\'re developing a comprehensive guide to help theoretical physics students navigate module choices, prerequisites, and fourth year options.')">Modules</a>
     </div>
   </li>
   <li class="dropdown">
@@ -42,3 +130,14 @@
     </div>
   </li>
 </div>
+
+<!-- Popup Modal -->
+<div id="popup" class="popup-overlay" onclick="closePopup()">
+  <div class="popup-content" onclick="event.stopPropagation()">
+    <span class="popup-close" onclick="closePopup()">&times;</span>
+    <h2 id="popup-title" class="popup-title"></h2>
+    <p id="popup-message" class="popup-message"></p>
+  </div>
+</div>
+
+<script src="tpsa.js"></script>
