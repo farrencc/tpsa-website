@@ -227,10 +227,10 @@ img.hero-content {
   background-color: var(--tpsa-blue);
   border: none;
   color: white;
-  padding: 1vw 20vw;
+  padding: 1vw 23vw;
   text-align: center;
   text-decoration: none;
-  font-size: 2.5vw;
+  font-size: 35px;
   font-weight: bold;
   margin: auto;
   cursor: pointer;
@@ -240,7 +240,7 @@ img.hero-content {
 
 @media (max-width: 650px) {
   .button-big {
-    font-size: 17px;
+    font-size: 25px;
   }
 }
 
@@ -259,6 +259,13 @@ img.hero-content {
   font-size: medium;
   padding: var(--spacing-2vw);
   text-align: justify;
+}
+
+.text-heading-box ul {
+  text-align: left;
+  line-height: 1.7;
+  margin-left: 2em;  /* Optional: indents the list */
+  padding-left: 1.5em; /* Optional: extra indent for bullets */
 }
 
 
