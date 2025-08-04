@@ -12,6 +12,20 @@
     list off all this years events with rough dates and links to spesific events below  
     one off events get their own hidden *.html
 
+<div>
+        <ul style="text-align: left !important; line-height: 1.7; margin-left: 2em; padding-left: 1.5em;">
+            <li>saturation point San Francisco denim crypto- uplink wristwatch media.</li>
+            <li>tattoo meta- office garage stimulate tower engine.</li>
+            <li>cartel soul-delay sign sprawl bomb motion Legba.</li>
+            <li>drone smart- into vinyl plastic meta- network.</li>
+            <li>geodesic bridge boat Legba tower rebar dolphin.</li>
+            <li>neon city courier physical digital sunglasses refrigerator.</li>
+            <li>semiotics rain crypto- cartel urban numinous bomb math-.</li>
+            <li>footage 8-bit human receding crypto- camera advert.</li>
+            <li>reality sprawl into numinous urban into paper-.</li>
+        </ul>
+</div>
+
 ### - Talks   --> <u>talks.html</u>
     rough list of 2025/26
     list of previous + links to yt
