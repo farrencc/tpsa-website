@@ -261,12 +261,6 @@ img.hero-content {
   text-align: justify;
 }
 
-.text-heading-box ul {
-  text-align: left;
-  line-height: 1.7;
-  margin-left: 2em;  /* Optional: indents the list */
-  padding-left: 1.5em; /* Optional: extra indent for bullets */
-}
 
 
 .image-box {
@@ -408,12 +402,33 @@ img.hero-content {
 }
 
 .half {
-  max-width: 50vw;
+  max-width: 50vw !important;
+}
+
+.fourth {
+  max-width: 40vw !important;
+}
+
+.third {
+  max-width: 33.33vw !important;
+}
+
+.quater {
+  max-width: 25vw !important;
 }
 
 @media (max-width: 650px) {
   .half {
-    max-width: none;
+    max-width: none   !important;
+  }
+  .quater {
+    max-width: none !important;
+  }
+  .third {
+    max-width: none !important;
+  }
+  .fourth {
+    max-width: none !important;
   }
 }/* history */
 .text-box-col {
@@ -864,4 +879,40 @@ img:hover.shakin {
   .popup-message {
     font-size: 17px;
   }
+}
+
+/* Proper List Styles */
+/* Specific class for properly formatted lists */
+.proper-list {
+  display: block !important;
+  margin: var(--spacing-2vw)!important;
+  text-align: left !important;
+  padding-left: 1vw !important; /* Reduced from 1.5em */
+  list-style-type: none !important;
+  width: calc(100% - var(--spacing-2vw)) !important; /* Account for margins */
+  white-space: normal !important;
+  box-sizing: border-box !important; /* Include padding/margins in width */
+  color: black !important; /* Ensure text color is black */
+}
+
+.proper-list li {
+  display: list-item !important;
+  text-align: left !important;
+  margin-bottom: 1vw !important;
+  width: auto !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  clear: both !important;
+}
+
+.proper-list a {
+  color: black  !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+}
+
+.proper-list a:hover {
+  text-decoration: underline !important;
+  background-color: var(--tpsa-blue-hover) !important;
+  text-decoration: underline !important;
 }
