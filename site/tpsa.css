@@ -227,10 +227,10 @@ img.hero-content {
   background-color: var(--tpsa-blue);
   border: none;
   color: white;
-  padding: 1vw 23vw;
+  padding: 1vw 10vw;
   text-align: center;
   text-decoration: none;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
   margin: auto;
   cursor: pointer;
@@ -887,7 +887,7 @@ img:hover.shakin {
   display: block !important;
   margin: var(--spacing-2vw)!important;
   text-align: left !important;
-  padding-left: 1vw !important; /* Reduced from 1.5em */
+  padding-left: 1vw; /* Reduced from 1.5em */
   list-style-type: none !important;
   width: calc(100% - var(--spacing-2vw)) !important; /* Account for margins */
   white-space: normal !important;
@@ -898,7 +898,7 @@ img:hover.shakin {
 .proper-list li {
   display: list-item !important;
   text-align: left !important;
-  margin-bottom: 1vw !important;
+  margin-bottom: 1vw;
   width: auto !important;
   white-space: normal !important;
   word-wrap: break-word !important;
@@ -915,4 +915,16 @@ img:hover.shakin {
   text-decoration: underline !important;
   background-color: var(--tpsa-blue-hover) !important;
   text-decoration: underline !important;
+}
+
+.dropdown-grey-box {
+  background-color: var(--dropdown-grey);
+  border-radius: 2vw;
+  padding: 3vw !important;
+}
+
+@media (max-width: 650px) {
+.dropdown-grey-box {
+  padding: 20px !important;
+}
 }
