@@ -397,8 +397,15 @@ img.hero-content {
 }
 
 .yt-video {
-  width: max(35vw, 250px);
-  height: max(calc(35vw*0.5625), calc(250px*0.5625));
+  width: 35vw;
+  height: calc(35vw*0.5625);
+}
+
+@media (max-width: 650px) {
+  .yt-video {
+    width: 80vw;
+    height: calc(80vw*0.5625);
+  }
 }
 
 .half {
