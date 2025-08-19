@@ -212,24 +212,6 @@ If needed, you can trigger deployment manually:
 - Verify all file paths are correct
 - Ensure no missing dependencies in build process
 
-# Recent Updates & Features
-
-### New Pages Added:
-- **Calendar page**: Comprehensive 2025 events listing
-- **Talks page**: Expert talks with YouTube video embeds
-- **Hackathons page**: Workshop and hackathon information with sign-up forms
-
-### Enhanced Features:
-- **Popup system**: Informational modals for "coming soon" content
-- **Responsive navigation**: Mobile-friendly dropdown menus
-- **Interactive Problem Solving page**: 3D visualization with React
-- **Improved mobile experience**: Better touch targets and responsive design
-
-### Technical Improvements:
-- **Automated deployment**: GitHub Actions workflow
-- **URL management**: Clean URLs and legacy redirects
-- **Performance optimizations**: Efficient CSS and JavaScript
-
 # Copyright
 
 © 2025 Theoretical Physics Student Association of Ireland. All rights reserved.
