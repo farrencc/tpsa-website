@@ -4,17 +4,34 @@
   <!--chalkboard image-->
   <div class="hero fade-in-1"> 
     <div class="hero-content fade-in-3 flex-row center-flex">
-      <div>
+      <div id="content-english">
         <h1 class="hero-text"> Theoretical Physics</h1>
         <h1 class="hero-text"> Student Association</h1>
         <h1 class="hero-text-small"> of Ireland</h1>
-        <!--<a href="sign-up.html" target="_blank" rel="noopener noreferrer">
-          <button class="button-hero bs">Sign Up</button>
-        </a>-->
-      </div>    
-      <img class="hero-content" src="images/logo_chalk.png">
+      </div>
+      <div id="content-irish" style="padding-right: 8vw;">
+        <h1 class="hero-text"> Fisic Theoiriciúil</h1>
+        <h1 class="hero-text"> Cumann na Mac</h1>
+        <h1 class="hero-text"> Léinn <span style="font-size: 3vw"> na hÉireann</span></h1>
+      </div>
+      <button id="language-toggle-btn" onclick="toggleHeroLanguage()" style="border: none; background: none; cursor: pointer;">
+        <img class="hero-content" src="images/logo_chalk.png">
+      </button>
     </div>
   </div>
+  <!-- <div id="content-irish" class="hero fade-in-1"> 
+    <div class="hero-content fade-in-3 flex-row center-flex">
+      <div>
+        <h1 class="hero-text"> Fisic Theoiriciúil</h1>
+        <h1 class="hero-text">  Cumann na Mac Léinn</h1>
+        <h1 class="hero-text-small"> na hÉireann</h1>
+      </div>
+      <button id="btn-english" class="language-btn" onclick="switchLanguage('english')">
+        <img class="hero-content" src="images/logo_chalk.png">
+      </button>
+    </div>
+  </div>
+-->
   <!--hero end-->
   
   <!--main-->

@@ -59,3 +59,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 100);
 });
+
+// Hero language toggle functionality
+let currentHeroLanguage = 'english';
+
+function toggleHeroLanguage() {
+    const englishContent = document.getElementById('content-english');
+    const irishContent = document.getElementById('content-irish');
+    
+    if (!englishContent || !irishContent) return;
+    
+    if (currentHeroLanguage === 'english') {
+        englishContent.style.display = 'none';
+        irishContent.style.display = 'block';
+        currentHeroLanguage = 'irish';
+    } else {
+        englishContent.style.display = 'block';
+        irishContent.style.display = 'none';
+        currentHeroLanguage = 'english';
+    }
+}

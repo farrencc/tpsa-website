@@ -1028,3 +1028,10 @@ img:hover.shakin {
 }
 
 
+#language-toggle-btn {
+    transition: transform 0.3s ease;
+}
+
+#language-toggle-btn:hover {
+    transform: scale(1.05);
+}
