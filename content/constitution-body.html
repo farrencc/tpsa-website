@@ -1,10 +1,21 @@
-
 <body>
+    <!-- Language Toggle Buttons -->
+    <div class="language-toggle" style="margin-top: 2vw; text-align: center; margin-bottom: 5px !important;">
+        <button id="btn-irish" class="language-btn active" onclick="switchLanguage('irish')">Gaeilge</button>
+        <button id="btn-english" class="language-btn" onclick="switchLanguage('english')">English</button>
+    </div>
+
+    <!-- PDF Download Notice -->
     <div class="blue-shadow" style="padding: 2vw; margin: 2vw;">
-            <p><strong>Note:</strong> This is the complete transcription of the TPSA Constitution. For the original PDF document, 
-            <a href="pdf/constitution.pdf" target="_blank" rel="noopener noreferrer" style="color: #597bb0;">download the PDF here</a>.</p>
-        </div>
-    <div class="text-box-col">
+        <p id="pdf-notice-english"><strong>Note:</strong> This is the complete transcription of the TPSA Constitution. For the original PDF document, 
+        <a href="pdf/constitution.pdf" target="_blank" rel="noopener noreferrer" style="color: #597bb0;">download the PDF here</a>.</p>
+        
+        <p id="pdf-notice-irish" style="display: none;"><strong>Nóta:</strong> Is é seo trasscríobh iomlán Bhunreacht TPSA. Don cháipéis bunaidh PDF, 
+        <a href="pdf/constitution.pdf" target="_blank" rel="noopener noreferrer" style="color: #597bb0;">íoslódáil an PDF anseo</a>.</p>
+    </div>
+
+    <!-- English Version -->
+    <div id="content-english" class="text-box-col">
         <h1 class="blue-center">Theoretical Physics Student Association of Ireland</h1>
         <h2 class="blue-center">Trinity College Dublin Branch</h2>
         
@@ -473,5 +484,74 @@
         <h3 class="blue-center">5.2 Relationship to Other Branches of the TPSA</h3>
 
         <p>1. When another branch of the TPSA is made, this will be revisited and amended as per protocol, including confirmation from Michael Mitchell.</p>
+    </div>
+
+    <!-- Irish Version -->
+    <div id="content-irish" class="text-box-col" style="display: none;">
+        <h1 class="blue-center">Lorem Ipsum Dolor Sit Amet</h1>
+        <h2 class="blue-center">Consectetur Adipiscing Elit Branch</h2>
+        
+        <div style="text-align: center; margin: 2vw;">
+            <img style="width: 200px;" src="images/logo.png" alt="TPSA Logo">
+        </div>
+
+        <h2 class="blue-center">Lorem Ipsum Dolor Sit Amet Consectetur</h2>
+        
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+
+        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+
+        <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio nam libero tempore.</p>
+
+        <p><em>Lorem ipsum dolor sit amet consectetur,</em></p>
+
+        <h1 class="blue-center">Lorem Ipsum Constitution</h1>
+        <p class="text-center"><em>Ut enim ad minim veniam quis nostrud 2023/24.</em></p>
+
+        <div style="text-align: center; margin: 2vw;">
+            <p><strong>Lorem Ipsum:</strong> Casey Farren-Colloty<br>
+            <strong>Dolor Sit:</strong> Vedanth Subramanian<br>
+            <strong>Amet Consectetur:</strong> Luke Hodgkiss<br>
+            <strong>Adipiscing Elit:</strong> John Marley<br>
+            <strong>Sed Do Eiusmod:</strong> Isabel Costello<br>
+            <strong>Tempor Incididunt:</strong> Artem Tarasenko<br>
+            <strong>Ut Labore Et:</strong> Matthew Blakeney<br>
+            <strong>Dolore Magna:</strong> Sarah Rae Kelly<br>
+            <strong>Aliqua Ut:</strong> Thomas Brosnan<br>
+            <strong>Enim Ad Minim:</strong> Ethan Davis · Álvaro Romero Castillo<br>
+            <strong>Veniam Quis:</strong> Michael A.J. Mitchell<br>
+            <strong>Nostrud Exercitation:</strong> Daniel Barron<br>
+            <strong>Ullamco Laboris:</strong> Seán Alexander</p>
+        </div>
+
+        <h2 class="blue-center">Mission Statement Lorem</h2>
+        
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...</p>
+
+        <h2 class="blue-center">Brief History Lorem</h2>
+        
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
+
+        <h2 class="blue-center">1 | Lorem Ipsum</h2>
+
+        <h3 class="blue-center">1.1 Dolor Sit Amet</h3>
+        
+        <p>1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p style="margin-left: 2em;">a) Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p style="margin-left: 2em;">b) Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+
+        <p>2. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+        <p>3. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <!-- Continue with more Lorem ipsum sections as needed -->
     </div>
 </body>

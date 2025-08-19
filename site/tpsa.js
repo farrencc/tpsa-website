@@ -20,3 +20,42 @@ document.addEventListener('keydown', function(event) {
     closePopup();
   }
 });
+
+// Language switching functionality
+function switchLanguage(language) {
+    const englishContent = document.getElementById('content-english');
+    const irishContent = document.getElementById('content-irish');
+    const englishNotice = document.getElementById('pdf-notice-english');
+    const irishNotice = document.getElementById('pdf-notice-irish');
+    const englishBtn = document.getElementById('btn-english');
+    const irishBtn = document.getElementById('btn-irish');
+
+    // Check if elements exist (we're on constitution page)
+    if (!englishContent || !irishContent) return;
+
+    if (language === 'english') {
+        englishContent.style.display = 'block';
+        irishContent.style.display = 'none';
+        if (englishNotice) englishNotice.style.display = 'block';
+        if (irishNotice) irishNotice.style.display = 'none';
+        if (englishBtn) englishBtn.classList.add('active');
+        if (irishBtn) irishBtn.classList.remove('active');
+    } else if (language === 'irish') {
+        englishContent.style.display = 'none';
+        irishContent.style.display = 'block';
+        if (englishNotice) englishNotice.style.display = 'none';
+        if (irishNotice) irishNotice.style.display = 'block';
+        if (englishBtn) englishBtn.classList.remove('active');
+        if (irishBtn) irishBtn.classList.add('active');
+    }
+}
+
+// Initialize language toggle when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Wait a bit more to ensure all content is loaded
+    setTimeout(function() {
+        if (document.getElementById('content-english')) {
+            switchLanguage('english');
+        }
+    }, 100);
+});
