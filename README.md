@@ -34,6 +34,7 @@ The site uses a template-based architecture with reusable header and footer comp
 │   ├── lecture-series-body.html # Becomes lecture-series.html (lecture series)
 │   ├── internships-body.html # Becomes internships.html (internship opportunities)
 │   ├── committee-body.html # Becomes committee.html (committee members)
+│   ├── constitution-body.html # Becomes constitution.html (bilingual constitution)
 │   ├── history-body.html   # Becomes history.html (TPSA background)
 │   └── sign-up-body.html   # Becomes sign-up.html (membership form)
 ├── templates/              # Site structure (edit these)
@@ -98,7 +99,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 ### Which Files to Edit
 
 #### For Page Content
-- `content/student-body.html` → becomes `student.html` (main TPSA homepage)
+- `content/student-body.html` → becomes `student.html` (main TPSA homepage with bilingual hero section)
 - `content/calendar-body.html` → becomes `calendar.html` (2025 events calendar)
 - `content/talks-body.html` → becomes `talks.html` (expert talks with YouTube embeds)
 - `content/plancks-body.html` → becomes `plancks.html` (PLANCKS competition info)
@@ -106,6 +107,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 - `content/lecture-series-body.html` → becomes `lecture-series.html` (student lecture content)
 - `content/internships-body.html` → becomes `internships.html` (internship opportunities)
 - `content/committee-body.html` → becomes `committee.html` (committee member profiles)
+- `content/constitution-body.html` → becomes `constitution.html` (bilingual constitution with language toggle)
 - `content/history-body.html` → becomes `history.html` (TPSA history)
 - `content/sign-up-body.html` → becomes `sign-up.html` (Google Form embed)
 
@@ -118,8 +120,8 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 - `site/problem-solving.html` - The Problem Solving Association page with interactive attractor
 
 #### For Styling and Functionality
-- `site/tpsa.css` - All website styling, responsive design, animations
-- `site/tpsa.js` - Interactive functions and popup modals
+- `site/tpsa.css` - All website styling, responsive design, animations, language toggle styling
+- `site/tpsa.js` - Interactive functions, popup modals, and language switching functionality
 
 ## 3. Key Features & Components
 
@@ -128,6 +130,13 @@ The site uses a sophisticated popup system for "coming soon" features and additi
 ```html
 <a href="#" onclick="showPopup('Title', 'Message content here')">Link Text</a>
 ```
+
+### Language Toggle Functionality
+The constitution page features a bilingual English/Irish toggle system:
+- **Language switching**: Use `switchLanguage('english')` or `switchLanguage('irish')` functions
+- **Hero toggle**: The main TPSA page has a clickable logo that toggles between English and Irish
+- **Dynamic content**: Content sections are shown/hidden based on language selection
+- **Persistent state**: Language selection is maintained during the session
 
 ### Responsive Design
 The site is fully responsive with breakpoints at 650px and 490px for mobile devices.
@@ -206,11 +215,13 @@ If needed, you can trigger deployment manually:
 - Check browser console for errors
 - Verify `tpsa.js` syntax
 - Test popup functionality with `showPopup()` function
+- Test language toggle functions `switchLanguage()` and `toggleHeroLanguage()`
 
 ### Deployment failures?
 - Check GitHub Actions logs for detailed error messages
 - Verify all file paths are correct
 - Ensure no missing dependencies in build process
+
 
 # Copyright
 

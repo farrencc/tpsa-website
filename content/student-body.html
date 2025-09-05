@@ -4,15 +4,20 @@
   <!--chalkboard image-->
   <div class="hero fade-in-1"> 
     <div class="hero-content fade-in-3 flex-row center-flex">
-      <div>
+      <div id="content-english">
         <h1 class="hero-text"> Theoretical Physics</h1>
         <h1 class="hero-text"> Student Association</h1>
         <h1 class="hero-text-small"> of Ireland</h1>
-        <!--<a href="sign-up.html" target="_blank" rel="noopener noreferrer">
-          <button class="button-hero bs">Sign Up</button>
-        </a>-->
-      </div>    
-      <img class="hero-content" src="images/logo_chalk.png">
+      </div>
+      <!--Cumann Mac Léinn na Fisice Teoiriciúla na hÉireann-->
+      <div id="content-irish" style="padding-right: 6vw;">
+        <h1 class="hero-text"> Cumann Mac</h1>
+        <h1 class="hero-text"> Léinn na Fisice</h1>
+        <h1 class="hero-text"> Teoiriciúla<span style="font-size: 3vw"> na hÉireann</span></h1>
+      </div>
+      <button id="language-toggle-btn" onclick="toggleHeroLanguage()" style="border: none; background: none; cursor: pointer;">
+        <img class="hero-content" src="images/logo_chalk.png">
+      </button>
     </div>
   </div>
   <!--hero end-->
