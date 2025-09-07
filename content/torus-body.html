@@ -1,0 +1,387 @@
+<body>
+<style>
+
+.game-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.current-player {
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.player-indicator {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 3px solid #2d232e;
+}
+
+.player1 {
+  background: linear-gradient(135deg, var(--tpsa-blue-hover), var(--tpsa-blue));
+  color: white;
+}
+
+.player2 {
+  background: linear-gradient(135deg, var(--problem-solving-green), #4a6b9e);
+  color: #2d232e;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  background: #2d232e;
+  padding: 15px;
+  border-radius: 12px;
+  margin: 2rem 0;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.cell {
+  aspect-ratio: 1;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  position: relative;
+  border: 2px solid transparent;
+  min-height: 60px;
+}
+
+.cell:hover:not(.occupied) {
+  background: #f7f7f2;
+  transform: scale(1.05);
+  border-color: var(--tpsa-blue);
+}
+
+.cell.occupied {
+  cursor: not-allowed;
+}
+
+.cell.player1 {
+  background: linear-gradient(135deg, var(--tpsa-blue-hover), var(--tpsa-blue));
+  color: white;
+  border-color: #4a6b9e;
+}
+
+.cell.player2 {
+  background: linear-gradient(135deg, var(--problem-solving-green), #055f26);
+  color: #2d232e;
+  border-color: var(--tpsa-blue);
+}
+
+.cell.winning {
+  animation: pulse 1s infinite;
+  box-shadow: 0 0 20px var(--tpsa-blue);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.game-status {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  min-height: 2rem;
+}
+
+.winner {
+  color: var(--tpsa-blue);
+  animation: celebrate 0.5s ease-in-out;
+}
+
+@keyframes celebrate {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 650px) {
+  .game-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cell {
+    font-size: 1.5rem;
+    min-height: 50px;
+  }
+}
+
+@media (max-width: 450px) {
+  .game-board {
+    gap: 4px;
+    padding: 8px;
+  }
+  
+  .cell {
+    min-height: 35px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .game-board {
+    gap: 2px;
+    padding: 5px;
+  }
+  
+  .cell {
+    min-height: 30px;
+    font-size: 1rem;
+  }
+}
+</style>
+
+<div class="text-image-box blue-shadow flex-col center-flex" style="max-width: 1200px; margin: 2vw auto;">
+  <div class="text-heading-box">
+    <h1 class="blue-center">Connect 4 on a Torus</h1>
+    <h4 class="grey-center">by Casey Farren-Colloty</h4>
+    
+    <div style="background-color: var(--dropdown-grey); border-radius: 2vw; padding: 20px; width: 100%; box-sizing: border-box;">
+        <p style="word-break: break-word;">
+        This game was written by Casey Farren-Colloty our former Auditor and current Seminar Director. It's a game born from his experiences at his internship at Oxford. 
+        Check out his 
+        <a href="https://farrencc.github.io/" target="_blank" rel="noopener noreferrer" style="color: #597bb0;">
+        site</a> for more of his projects.
+        </p>
+        <!--<p style="word-break: break-word;">
+            <strong>How to Play:</strong> Get four pieces in a row to win, just like Connect 4! But we've joined the board's edges, creating a wrap-around torus topology, and there is now no gravity - you can place pieces anywhere.
+        </p>-->
+        <div class="flex-col center-flex">
+            <button class="button" onclick="toggleRules()">How to Play</button>
+            <div id="rulesContent" style="display: none;margin-top: 2vw;"> 
+                <p>Get four pieces in a row to win, just like Connect 4! But we've joined the board's edges, creating a wrap-around torus topology, and there is now no gravity - you can place pieces anywhere.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-info">
+      <div class="current-player">
+        <span>Current Player:</span>
+        <div class="player-indicator player1" id="playerIndicator">×</div>
+        <span id="playerName">Player 1 (×)</span>
+      </div>
+      <button class="button bs" onclick="resetGame()">New Game</button>
+    </div>
+
+    <div class="game-status" id="gameStatus"></div>
+
+    <div class="game-board" id="gameBoard"></div>
+    
+    <div style="padding-top: 2vw;">
+      <p class="footer-text text-center" style="color: black;">
+        &copy; 2025 Casey Farren-Colloty. All rights reserved.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+class Connect4Torus {
+  constructor() {
+    this.rows = 6;
+    this.cols = 7;
+    this.board = Array(this.rows).fill().map(() => Array(this.cols).fill(0));
+    this.currentPlayer = 1; // 1 for X, 2 for O
+    this.gameOver = false;
+    this.winner = null;
+    this.winningCells = [];
+    this.initializeBoard();
+  }
+
+  initializeBoard() {
+    const gameBoard = document.getElementById('gameBoard');
+    gameBoard.innerHTML = '';
+    
+    for (let row = 0; row < this.rows; row++) {
+      for (let col = 0; col < this.cols; col++) {
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        cell.dataset.row = row;
+        cell.dataset.col = col;
+        cell.addEventListener('click', () => this.handleCellClick(row, col));
+        gameBoard.appendChild(cell);
+      }
+    }
+    this.updateDisplay();
+  }
+
+  handleCellClick(row, col) {
+    if (this.gameOver || this.board[row][col] !== 0) {
+      return;
+    }
+
+    this.board[row][col] = this.currentPlayer;
+    
+    if (this.checkWin(row, col)) {
+      this.gameOver = true;
+      this.winner = this.currentPlayer;
+    } else if (this.isBoardFull()) {
+      this.gameOver = true;
+      this.winner = 0; // Tie
+    } else {
+      this.currentPlayer = this.currentPlayer === 1 ? 2 : 1;
+    }
+
+    this.updateDisplay();
+  }
+
+  checkWin(row, col) {
+    const player = this.board[row][col];
+    
+    // Check all 4 directions
+    const directions = [
+      [0, 1],  // horizontal
+      [1, 0],  // vertical
+      [1, 1],  // diagonal /
+      [1, -1]  // diagonal \
+    ];
+
+    for (let [dr, dc] of directions) {
+      const winningCells = this.checkDirection(row, col, dr, dc, player);
+      if (winningCells.length >= 4) {
+        this.winningCells = winningCells;
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  checkDirection(startRow, startCol, dr, dc, player) {
+    let cells = [{row: startRow, col: startCol}]; // Include the current piece
+    
+    // Check forward direction
+    for (let i = 1; i < 4; i++) {
+      const newRow = (startRow + i * dr + this.rows) % this.rows;
+      const newCol = (startCol + i * dc + this.cols) % this.cols;
+      
+      if (this.board[newRow][newCol] === player) {
+        cells.push({row: newRow, col: newCol});
+      } else {
+        break;
+      }
+    }
+    
+    // Check backward direction
+    for (let i = 1; i < 4; i++) {
+      const newRow = (startRow - i * dr + this.rows) % this.rows;
+      const newCol = (startCol - i * dc + this.cols) % this.cols;
+      
+      if (this.board[newRow][newCol] === player) {
+        cells.unshift({row: newRow, col: newCol});
+      } else {
+        break;
+      }
+    }
+    
+    return cells;
+  }
+
+  isBoardFull() {
+    return this.board.every(row => row.every(cell => cell !== 0));
+  }
+
+  updateDisplay() {
+    // Update board display
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+      const row = parseInt(cell.dataset.row);
+      const col = parseInt(cell.dataset.col);
+      const value = this.board[row][col];
+      
+      cell.className = 'cell';
+      if (value === 1) {
+        cell.className += ' player1 occupied';
+        cell.textContent = '×';
+      } else if (value === 2) {
+        cell.className += ' player2 occupied';
+        cell.textContent = '○';
+      } else {
+        cell.textContent = '';
+      }
+
+      // Highlight winning cells
+      if (this.winningCells.some(winCell => winCell.row === row && winCell.col === col)) {
+        cell.className += ' winning';
+      }
+    });
+
+    // Update player indicator
+    const playerIndicator = document.getElementById('playerIndicator');
+    const playerName = document.getElementById('playerName');
+    const gameStatus = document.getElementById('gameStatus');
+
+    if (this.gameOver) {
+      if (this.winner === 0) {
+        gameStatus.textContent = "It's a tie!";
+        gameStatus.className = 'game-status';
+      } else {
+        const winnerName = this.winner === 1 ? 'Player 1 (×)' : 'Player 2 (○)';
+        gameStatus.textContent = `🎉 ${winnerName} Wins! 🎉`;
+        gameStatus.className = 'game-status winner';
+      }
+    } else {
+      gameStatus.textContent = '';
+      gameStatus.className = 'game-status';
+      
+      if (this.currentPlayer === 1) {
+        playerIndicator.className = 'player-indicator player1';
+        playerIndicator.textContent = '×';
+        playerName.textContent = 'Player 1 (×)';
+      } else {
+        playerIndicator.className = 'player-indicator player2';
+        playerIndicator.textContent = '○';
+        playerName.textContent = 'Player 2 (○)';
+      }
+    }
+  }
+}
+
+// Global game instance
+let game = new Connect4Torus();
+
+function resetGame() {
+  game = new Connect4Torus();
+}
+
+// Initialize the game when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  game = new Connect4Torus();
+});
+
+function toggleRules() {
+  const rulesContent = document.getElementById('rulesContent');
+  if (rulesContent.style.display === 'none' || rulesContent.style.display === '') {
+    rulesContent.style.display = 'block';
+  } else {
+    rulesContent.style.display = 'none';
+  }
+}
+</script>
+
+</body>
