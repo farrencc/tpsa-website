@@ -248,7 +248,8 @@ img.hero-content {
 
 @media (max-width: 650px) {
   .button-big {
-    font-size: 25px;
+    font-size: 20px;
+    padding: 15px 14px;
   }
 }
 
