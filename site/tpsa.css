@@ -306,7 +306,7 @@ img.hero-content {
 }
 
 .image-box-col {
-  gap: 5vw;
+  gap: 2vw;
   margin-bottom: var(--spacing-2vw);
 }
 
