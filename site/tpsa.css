@@ -70,11 +70,15 @@ footer {
 .only-mobile {
   display: none;
 }
+
+
 @media (max-width: 650px) {
   .only-mobile {
     display: inline-block;
   }
-  
+  .not-mobile{
+    display: none;
+  }
   p {
     font-size: 17px;
   }
