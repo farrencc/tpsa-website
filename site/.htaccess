@@ -9,6 +9,11 @@ RewriteRule ^projects$ /calendar [R=301,L]
 # Redirect homepage to index
 RewriteRule ^homepage$ /index [R=301,L]
 
+# Redirects for sign up
+RewriteRule ^signup$ /sign-up [R=301,L]
+RewriteRule ^sign-ups$ /sign-up [R=301,L]
+RewriteRule ^signups$ /sign-up [R=301,L]
+
 # Redirect both hackathon/s and workshop/s to hackathons
 RewriteRule ^hackathon$ /hackathons [R=301,L]
 RewriteRule ^workshop$ /hackathons [R=301,L]
