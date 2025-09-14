@@ -4,6 +4,8 @@ The official website for the Theoretical Physics Student Association (TPSA) of I
 
 The site uses a template-based architecture with reusable header and footer components to wrap around page content. This approach generates static HTML pages from modular components - `header.html`, `footer.html`, and `<name>-body.html` to compile the website. There are also a handful of other unique pages such as the `index.html` & `problem-solving.html`. 
 
+<img src="site/images/logo.png" alt="TPSA Logo" width="200px" height="auto" style="display: block;">
+
 # Table of Contents
 
 1. ***Project Structure***
@@ -37,6 +39,8 @@ The site uses a template-based architecture with reusable header and footer comp
 │   ├── constitution-body.html # Becomes constitution.html (bilingual constitution)
 │   ├── history-body.html   # Becomes history.html (TPSA background)
 │   └── sign-up-body.html   # Becomes sign-up.html (membership form)
+│   └── qiskit-body.html    # Becomes qiskit.html (qiskit ibm )
+│   └── torus-body.html     # Becomes torus.html (Tick-Tack-Torus Game)
 ├── templates/              # Site structure (edit these)
 │   ├── header.html         # Navigation, <head>, opening <body>
 │   └── footer.html         # Footer, closing </body></html>
