@@ -610,15 +610,27 @@
 
 
 
-              <div class="project-item">
-                <h3 class="text-2xl font-bold mb-6">Public Payments Tracker: Ireland's Comprehensive Government Spending Database</h3>
-                  <p class="text-lg leading-relaxed mb-8">
-                    How much is the State spending, and where is that money going? The Public Payments Tracker is Ireland's largest cross-government payments dataset, aggregating records from over 190 State entities and covering €78.5 billion across 400,000+ transactions. It shows who was paid, for what, and when - a breadth of visibility no single department or agency currently provides.
-                    </p>
-                  <p class="text-lg leading-relaxed mb-8">
-                    Built with and alongside civil society, this project draws on years of work by Ireland's FOI and open-data community, journalists, and civil and public servants. By consolidating fragmented payment data into a single accessible resource, we're enabling unprecedented transparency in public spending. This empowers citizens, researchers, and policymakers to identify spending patterns, assess value for money, and hold institutions accountable - ensuring taxpayer funds serve the public interest effectively.
-                    </p>
-              </div>
+             <div class="project-item">
+              <h3 class="text-2xl font-bold mb-6">Public Payments Tracker: Ireland's Comprehensive Government Spending Database</h3>
+              <p class="text-lg leading-relaxed mb-8">
+                Public procurement generates vast amounts of transactional data, but this information remains fragmented across departments, agencies, and reporting systems. The Public Payments Tracker consolidates this distributed data into a unified analytical framework, aggregating records from over 190 state entities covering €78.5 billion across 400,000+ transactions.
+              </p>
+              <p class="text-lg leading-relaxed mb-8">
+                The system addresses a fundamental data infrastructure problem: individual agencies publish payment records in inconsistent formats with varying levels of detail, making cross-government analysis practically impossible. By building data pipelines to extract, clean, and standardise these records, we've created a comprehensive view of state expenditure flows accessible to researchers, journalists, policymakers, and citizens alike. The consolidated database tracks payment recipients, contract purposes, amounts, and originating entities - revealing spending concentration patterns, supplier market structure, and variations in reporting practices across the public sector. This visibility into how resources flow through the system enables evidence-based analysis of procurement efficiency, market concentration dynamics, and the evolving boundaries between direct state capacity and contracted services.
+              </p>
+               <div class="flex justify-center mt-6">
+    <a 
+      href="https://lookerstudio.google.com/u/1/reporting/75264647-4a9c-4f49-8bf7-e588bac58d84/page/p_48bq3umf5c" 
+      target="_blank"
+      rel="noopener noreferrer"
+      class="bg-[#32e875] text-white px-8 py-3 rounded inline-block hover:bg-[#2bc764] transition-colors text-lg font-semibold"
+    >
+      View Interactive Dashboard
+    </a>
+  </div>
+              <div id="procurement-slideshow"></div>
+              
+            </div> 
 
               <div class="project-item">
                 <div class="flex flex-col md:flex-row gap-8">
@@ -675,11 +687,7 @@
                       quantitative reasoning skills needed to tackle tomorrow’s challenges, and where Ireland’s tradition of
                       academic excellence is accessible to all. This is mathematics education reimagined: comprehensive,
                       inspired, and absolutely free</p>
-                    <img 
-                      src="images/problem-solving/Lightboard-Animation.png" 
-                      alt="Ecnetica Image of Sarah" 
-                      class="w-full max-w-4xl mx-auto mt-4 mb-8"
-                    />
+                   <div id="ecnetica-slideshow"></div> 
                 </div>
             </div>
         </section>
@@ -1061,6 +1069,217 @@
         const root = ReactDOM.createRoot(document.getElementById('attractor-root'));
         root.render(<HalvorsenAttractor />);
       </script>
-    
-    </body>
-    </html>
+
+
+<!-- Slideshow -->
+   <script type="text/babel">
+  const Slideshow = ({ images, interval = 5000 }) => {
+    const [currentIndex, setCurrentIndex] = React.useState(0);
+    const [isFullscreen, setIsFullscreen] = React.useState(false);
+    const containerRef = React.useRef(null);
+    const timerRef = React.useRef(null);
+
+    const startTimer = React.useCallback(() => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+      timerRef.current = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+      }, interval);
+    }, [images.length, interval]);
+
+    React.useEffect(() => {
+      startTimer();
+      return () => {
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+        }
+      };
+    }, [startTimer]);
+
+    React.useEffect(() => {
+      const handleFullscreenChange = () => {
+        setIsFullscreen(!!document.fullscreenElement);
+      };
+      document.addEventListener('fullscreenchange', handleFullscreenChange);
+      return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    }, []);
+
+    const goToSlide = (index) => {
+      setCurrentIndex(index);
+      startTimer();
+    };
+
+    const goToPrevious = () => {
+      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+      startTimer();
+    };
+
+    const goToNext = () => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+      startTimer();
+    };
+
+    const toggleFullscreen = async () => {
+      if (!document.fullscreenElement) {
+        try {
+          await containerRef.current.requestFullscreen();
+        } catch (err) {
+          console.error('Error attempting to enable fullscreen:', err);
+        }
+      } else {
+        try {
+          await document.exitFullscreen();
+        } catch (err) {
+          console.error('Error attempting to exit fullscreen:', err);
+        }
+      }
+    };
+
+    return (
+      <div 
+        ref={containerRef}
+        className={`relative w-full max-w-4xl mx-auto mt-4 mb-8 ${isFullscreen ? 'max-w-none h-screen bg-black' : ''}`}
+      >
+        <div 
+          className={`relative overflow-hidden rounded-lg border-4 border-[#7b2cbf] ${isFullscreen ? 'h-full border-0 bg-black' : 'bg-[#f5f0ff]'}`}
+          style={{ height: isFullscreen ? '100%' : '600px' }}
+        >
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className="absolute inset-0 transition-opacity duration-500 flex items-center justify-center p-4"
+              style={{ opacity: currentIndex === index ? 1 : 0 }}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="max-w-full max-h-full w-auto h-auto object-contain"
+                loading="eager"
+              />
+              {image.caption && (
+                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-4 text-center">
+                  {image.caption}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Fullscreen Button */}
+        <button
+          onClick={toggleFullscreen}
+          className="absolute top-4 right-4 bg-[#7b2cbf] bg-opacity-80 hover:bg-opacity-100 text-white p-2 rounded transition-all z-10"
+          aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+          title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+        >
+          {isFullscreen ? (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+            </svg>
+          )}
+        </button>
+
+        {/* Navigation Buttons */}
+        <button
+          onClick={goToPrevious}
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#7b2cbf] bg-opacity-80 hover:bg-opacity-100 text-white p-3 rounded-full transition-all z-10"
+          aria-label="Previous slide"
+        >
+          &#8249;
+        </button>
+        <button
+          onClick={goToNext}
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#7b2cbf] bg-opacity-80 hover:bg-opacity-100 text-white p-3 rounded-full transition-all z-10"
+          aria-label="Next slide"
+        >
+          &#8250;
+        </button>
+
+        {/* Dots Indicator */}
+        <div className="flex justify-center gap-2 mt-4">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                currentIndex === index ? 'bg-[#32e875] w-8' : 'bg-gray-400 hover:bg-gray-500'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  // Ecnetica Slideshow
+  const ecneticaImages = [
+    {
+      src: 'images/problem-solving/ecnetica_1.png',
+      alt: 'Ecnetica lightboard animation',
+      caption: 'Interactive mathematics education through cutting-edge animations'
+    },
+    {
+      src: 'images/problem-solving/ecnetica_2.png',
+      alt: 'Ecnetica teaching example',
+      caption: 'Expert instruction making Higher Level mathematics accessible to all'
+    },
+    {
+      src: 'images/problem-solving/ecnetica_3.png',
+      alt: 'Ecnetica platform interface',
+      caption: 'Free, comprehensive resources for Irish students'
+    },
+    {
+      src: 'images/problem-solving/ecnetica_4.png',
+      alt: 'Ecnetica platform interface',
+      caption: 'Free, comprehensive resources for Irish students'
+    },
+    {
+      src: 'images/problem-solving/ecnetica_5.png',
+      alt: 'Ecnetica platform interface',
+      caption: 'Free, comprehensive resources for Irish students'
+    },
+    {
+      src: 'images/problem-solving/ecnetica_6.png',
+      alt: 'Ecnetica platform interface',
+      caption: 'Free, comprehensive resources for Irish students'
+    },
+    {
+      src: 'images/problem-solving/ecnetica_7.png',
+      alt: 'Ecnetica platform interface',
+      caption: 'Free, comprehensive resources for Irish students'
+    }
+  ];
+
+  const ecneticaRoot = ReactDOM.createRoot(document.getElementById('ecnetica-slideshow'));
+  ecneticaRoot.render(<Slideshow images={ecneticaImages} />);
+
+  // Procurement Slideshow
+  const procurementImages = [
+    {
+      src: 'images/problem-solving/payment_tracker_1.png',
+      alt: 'Public Payments Tracker dashboard',
+      caption: 'Comprehensive view of €78.5 billion in state expenditure'
+    },
+    {
+      src: 'images/problem-solving/payment_tracker_2.png',
+      alt: 'Spending pattern analysis',
+      caption: 'Revealing concentration patterns and market structures'
+    },
+    {
+      src: 'images/problem-solving/payment_tracker_3.png',
+      alt: 'Temporal spending patterns',
+      caption: 'Tracking expenditure flows across 190+ state entities'
+    }
+  ];
+
+  const procurementRoot = ReactDOM.createRoot(document.getElementById('procurement-slideshow'));
+  procurementRoot.render(<Slideshow images={procurementImages} />);
+</script> 
+  </body>
+</html>
