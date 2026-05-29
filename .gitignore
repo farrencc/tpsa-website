@@ -6,3 +6,5 @@ site/*.html
 !site/index.html
 # Don't ignore the Problem Sol
 !site/problem_solving.html
+# Don't ignore COTHROM paper
+!site/cothrom-paper.html
