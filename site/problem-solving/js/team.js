@@ -12,6 +12,13 @@ export function initTeam() {
   const intakes = [...section.querySelectorAll(".intake--sep")];
 
   const select = (id) => {
+    // The three panels differ in height by ~600px, so swapping them resizes the
+    // document and the browser answers by moving the viewport - measurably 104px
+    // when switching to a shorter panel with the mark column sticky. Pin the
+    // section's top edge across the swap: only the panel below it changes height,
+    // so holding that edge holds everything the reader can currently see.
+    const anchor = section.getBoundingClientRect().top;
+
     loops.forEach((l) => {
       const on = l.dataset.group === id;
       l.classList.toggle("is-active", on);
@@ -28,6 +35,18 @@ export function initTeam() {
       if (on) replayAnimation(g, "is-active"); // restart the card stagger
     });
     intakes.forEach((i) => i.classList.toggle("is-active", i.dataset.group === id));
+
+    const drift = section.getBoundingClientRect().top - anchor;
+    if (drift) {
+      // base.css sets scroll-behavior:smooth, which would animate the correction
+      // and show the very jump it is undoing; suspend it for this one call rather
+      // than pass behavior:"instant", which older Safari rejects outright.
+      const root = document.documentElement;
+      const prev = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      window.scrollTo(window.scrollX, window.scrollY + drift);
+      root.style.scrollBehavior = prev;
+    }
   };
 
   loops.forEach((l) => {

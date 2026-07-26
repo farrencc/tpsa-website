@@ -2,11 +2,15 @@
 .sec--team{background:var(--white)}
 .team{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:clamp(40px,6vw,80px);align-items:center}
 .team__mark{display:flex;flex-direction:column;gap:26px;align-items:center;position:sticky;top:110px}
-.triq{width:100%;max-width:320px;height:auto;overflow:visible}
+/* touch-action:manipulation on every tappable part of this section: without it
+   double-tap-to-zoom stays armed, and probing three interleaved loops means
+   double-tapping constantly - the browser then zooms instead of selecting, and
+   swallows the second tap while it waits to find out which gesture it was. */
+.triq{width:100%;max-width:320px;height:auto;overflow:visible;touch-action:manipulation}
 .triq__loop.is-active{animation:triqPulse 2.6s ease-in-out infinite}
 @keyframes triqPulse{0%,100%{opacity:1}50%{opacity:.82}}
 .team__selector{display:flex;flex-direction:column;gap:6px;width:100%;max-width:320px}
-.team__pick{display:flex;align-items:center;gap:14px;background:transparent;border:none;border-left:3px solid transparent;padding:13px 16px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;cursor:pointer;text-align:left;transition:.3s var(--ease)}
+.team__pick{display:flex;align-items:center;gap:14px;background:transparent;border:none;border-left:3px solid transparent;padding:13px 16px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;cursor:pointer;text-align:left;touch-action:manipulation;transition:.3s var(--ease)}
 .team__pick:hover{background:rgba(123,44,191,.06)}
 .team__pick.is-active{background:var(--surface-card);border-left-color:currentColor}
 .team__dot{width:12px;height:12px;border-radius:50%;flex:none;transition:.3s var(--ease)}
@@ -18,7 +22,7 @@
 .team__grid.is-active{display:grid}
 .team__grid.is-active .tm{animation:tmIn .5s cubic-bezier(0.16,1,0.3,1) var(--tmd,0s) both}
 @keyframes tmIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-.tm{text-align:center;padding:16px 10px;background:transparent;border:none;cursor:pointer;border-radius:var(--radius-lg);transition:background .3s var(--ease),transform .3s var(--ease);font:inherit}
+.tm{text-align:center;padding:16px 10px;background:transparent;border:none;cursor:pointer;border-radius:var(--radius-lg);touch-action:manipulation;transition:background .3s var(--ease),transform .3s var(--ease);font:inherit}
 .tm:hover{background:var(--surface-card)}
 .tm__photo{width:150px;height:150px;margin:0 auto 20px;border-radius:50%;overflow:hidden;position:relative;transition:transform .4s var(--ease),box-shadow .4s var(--ease);background:var(--surface-card)}
 .tm__photo::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 3px transparent;transition:box-shadow .4s var(--ease)}
@@ -55,7 +59,12 @@
 [data-group="leadership"]{--group:#32e875}
 [data-group="researchers"]{--group:#9d4edd}
 [data-group="interns"]{--group:#c77dff}
-.triq__loop{cursor:pointer}
+.triq__loop{cursor:pointer;touch-action:manipulation}
+.triq__loop:focus-visible{outline:2px solid var(--purple-600);outline-offset:3px}
+/* The hit area is the ink only (pointer-events:visiblePainted on a thin filled
+   outline). Deliberately left as-is: the three bands interleave, so padding one
+   target only steals from its neighbours - the last loop painted wins the
+   overlap. The selector list below is the full-size control for touch. */
 .triq__loop path{fill:#dfdbe6;transition:fill .5s cubic-bezier(0.16,1,0.3,1)}
 .triq__loop.is-active{filter:drop-shadow(0 0 0.4px var(--group))}
 .triq__loop.is-active path{fill:var(--group)}
