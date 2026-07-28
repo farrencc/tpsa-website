@@ -17,6 +17,7 @@
 .team__pick{border-left:none;border-radius:var(--radius-sm)}
 .team__pick.is-active{border-left:none}
 .tmodal__card{grid-template-columns:1fr;justify-items:center;text-align:center;gap:20px;padding:32px 24px}
+.tmodal__links{justify-content:center}
 }
 @media(max-width:520px){
 .hero__cta{flex-direction:column;align-items:flex-start}
