@@ -75,11 +75,16 @@ A few conventions the JavaScript relies on:
   labels.
 - **Team** — three groups keyed by `data-group` (`leadership`, `researchers`,
   `interns`) on the triquetra loops, the selector buttons and the card grids.
-  Each card's bio sits in `data-bio`; the modal reads it from there. Group
+  Each card's bio sits in `data-bio`; the modal reads it from there, and
+  `data-member` is the slug other sections use to open that profile. Group
   colours are defined once as `--group` at the bottom of `css/team.css`.
 - **Press** — add a `.pr` block inside `.spine`, newest first, alternating
   `pr--l` / `pr--r`. `data-visible` on `.spine` caps how many show; once there
   are more, the three-diamond terminus becomes an expand button on its own.
+  An article closes with a single `.pr__link`; a podcast closes with a
+  `.pr__listen` row carrying one `.pr__pod` link per platform. To credit one of
+  ours, add a `.pr__with` line whose `.pr__person` button names them by
+  `data-member` — clicking it opens their profile in the Team section.
 - **Stat counters** — `data-count-to`, with optional `data-prefix`,
   `data-suffix` and `data-decimals`. The element's text is the final value, so
   the figures are correct with JavaScript disabled.
