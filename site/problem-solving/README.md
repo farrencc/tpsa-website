@@ -66,6 +66,10 @@ assets/        logo, knot pattern, team photos
 change a project description, a team member's bio or a press quote, edit the
 markup where it appears.
 
+**One exception: the SPARÁN figures.** Every element with a `data-statespend`
+attribute is generated — see *The statespend.ie figures* below. Editing those by
+hand works until the next build, which overwrites them.
+
 A few conventions the JavaScript relies on:
 
 - **Projects** — each tab is `.px__item` with `data-project="id"`, paired with a
@@ -114,6 +118,59 @@ A few conventions the JavaScript relies on:
   the figures are correct with JavaScript disabled.
 - **Scroll reveals** — add `data-reveal` to any element; tune with
   `style="--rd:.1s"` (delay) and `--ry` (travel distance).
+
+### The statespend.ie figures
+
+The three SPARÁN numbers — spending traced, transactions consolidated, state
+entities covered — are not typed in by hand. They come from
+[statespend.ie](https://statespend.ie/), the live front end for the SPARÁN
+dataset, which serves the same totals its own pages render over a read-only
+JSON API:
+
+```
+GET https://statespend.ie/api/summary
+{"records":598292,"cents":10548457155598,"bodies":217,
+ "suppliers":42690,"period_min":"2011-Q1","period_max":"2026-Q2"}
+```
+
+`scripts/statespend_stats.py` fetches that and rewrites every element in
+`index.html` carrying a `data-statespend` attribute — the three stat tiles, the
+same figures where they appear in the SPARÁN project prose, and the provenance
+line under the stats grid. The build workflow runs it before every build and
+again every Monday morning, so a deploy always ships the totals as they stood
+when it ran.
+
+```bash
+python3 scripts/statespend_stats.py           # rewrite the figures
+python3 scripts/statespend_stats.py --check   # report drift, change nothing (exit 1 if stale)
+```
+
+Three things worth knowing:
+
+- **The generated markup lives in the script, not the page.** Marked elements
+  are rewritten wholesale from the `FIELDS` templates in
+  `scripts/statespend_stats.py`. Restyling a stat tile means editing the
+  template there. Adding a figure means adding a `FIELDS` entry *and* a matching
+  `data-statespend` element — the script exits non-zero if a key has no element
+  in the page, so a typo fails the step rather than silently doing nothing.
+- **Every figure is rounded down** — €105.48bn renders as `€105.4bn`, 598,292
+  records as `590K+`, 217 bodies as `210+`. The `+` keeps a floored count
+  truthful, and understating is the safer error on a page about public money.
+  The fourth tile, *active public projects*, is a count of what is on this page
+  and is not touched.
+- **The figures never depend on statespend.ie being up.** They are baked into
+  the HTML at build time, so they are correct with JavaScript disabled and a
+  visitor's browser never calls the API. If statespend.ie is unreachable, or
+  returns something that fails the sanity floors in the script, nothing is
+  written and the previous figures deploy unchanged.
+
+A note on why it works this way: statespend.ie sends no
+`Access-Control-Allow-Origin` header, so a browser on tpsa.ie cannot read
+`/api/summary` directly — a live client-side fetch would be blocked by CORS.
+Should that endpoint ever start sending CORS headers (both sites are ours, so
+it is a one-line change at the statespend.ie edge), the figures could hydrate in
+the browser on top of the built-in values. The build-time refresh would still be
+worth keeping as the no-JavaScript baseline.
 
 ### Styles
 

@@ -189,17 +189,20 @@
         </ol>
       </div>
     </div>
+    <!-- The three SPARÁN figures are pulled from statespend.ie at build time by
+         scripts/statespend_stats.py, which rewrites every element carrying a
+         data-statespend attribute. Change them there, not here. -->
     <div class="stats">
       <div class="stat" data-reveal>
-        <div class="stat__num"><span data-count-to="102.9" data-decimals="1" data-prefix="€" data-suffix="bn">€102.9bn</span></div>
+        <div class="stat__num"><span data-statespend="spend" data-count-to="105.4" data-decimals="1" data-prefix="€" data-suffix="bn">€105.4bn</span></div>
         <div class="stat__lab">public spending traced</div>
       </div>
       <div class="stat" data-reveal style="--rd:.06s">
-        <div class="stat__num"><span data-count-to="500" data-suffix="K+">500K+</span></div>
+        <div class="stat__num"><span data-statespend="records" data-count-to="590" data-suffix="K+">590K+</span></div>
         <div class="stat__lab">transactions consolidated</div>
       </div>
       <div class="stat" data-reveal style="--rd:.12s">
-        <div class="stat__num"><span data-count-to="200" data-suffix="+">200+</span></div>
+        <div class="stat__num"><span data-statespend="bodies" data-count-to="210" data-suffix="+">210+</span></div>
         <div class="stat__lab">state entities covered</div>
       </div>
       <div class="stat" data-reveal style="--rd:.18s">
@@ -207,6 +210,7 @@
         <div class="stat__lab">active public projects</div>
       </div>
     </div>
+    <p data-statespend="asof" class="stats__src">Public-finance figures from <a href="https://statespend.ie/" target="_blank" rel="noopener noreferrer">statespend.ie</a> — published records to 2026 Q2, synced 28 July 2026.</p>
   </div>
 </section>
 
@@ -258,7 +262,7 @@
               <div class="flip__face flip__face--back"><div class="flip__back-body">
                 <div class="flip__kicker">How this animation relates</div>
                 <h4>Fragmented records, consolidated</h4>
-                <p>Scattered payment records from over 190 state entities stream in and converge into a single, legible flow. It mirrors the pipelines that extract, clean and standardise €102.9 billion across 500,000+ transactions into one comprehensive, public view of state spending.</p>
+                <p>Scattered payment records from over <span data-statespend="bodies-prose">210</span> state entities stream in and converge into a single, legible flow. It mirrors the pipelines that extract, clean and standardise <span data-statespend="spend-prose">€105.4 billion</span> across <span data-statespend="records-prose">590,000+</span> transactions into one comprehensive, public view of state spending.</p>
                 <div class="flip__hint flip__hint--back">Back to animation <span aria-hidden="true">↺</span></div>
               </div></div>
             </div>
@@ -269,7 +273,7 @@
             <div><span>Field</span>Public finance</div>
             <div><span>Theme</span><button type="button" class="px__theme" data-theme="transparency">Transparency</button></div>
             <div><span>Status</span><b class="px__status">Live</b></div>
-            <div><span>Working with</span>200+ state entities</div>
+            <div><span>Working with</span><span data-statespend="bodies-short">210+</span> state entities</div>
             <div><span>Method</span>Open data</div>
           </div>
           <h3>Ireland’s government spending, made legible</h3>
@@ -285,7 +289,7 @@
               <span class="acr__w" style="--acrd:.46s"><b class="acr__i">N</b>etwork</span>
             </p>
           </div>
-          <p>Public procurement generates vast transactional data, but it stays fragmented across departments and reporting systems. SPARÁN consolidates records from over 190 state entities covering €102.9 billion across 500,000+ transactions.</p>
+          <p>Public procurement generates vast transactional data, but it stays fragmented across departments and reporting systems. SPARÁN consolidates records from over <span data-statespend="bodies-prose">210</span> state entities covering <span data-statespend="spend-prose">€105.4 billion</span> across <span data-statespend="records-prose">590,000+</span> transactions. The live figures, and the records behind them, are published at <a href="https://statespend.ie/" target="_blank" rel="noopener noreferrer">statespend.ie</a>.</p>
           <p>By building pipelines to extract, clean and standardise these records, we have worked together with  <a class="acr__w acr__w--link" style="--acrd:.28s" href="https://www.oireachtas.ie/en/members/member/Albert-Dolan.D.2024-11-29/" target="_blank" rel="noopener noreferrer">Albert Dolan T.D.</a><span class="acr__ext" aria-hidden="true">↗</span></a> to create a comprehensive view of state expenditure that is accessible to researchers, journalists, policymakers and citizens alike.</p>
           <a class="btn btn--primary" href="https://datastudio.google.com/reporting/75264647-4a9c-4f49-8bf7-e588bac58d84" target="_blank" rel="noopener noreferrer">View interactive dashboard</a>
         </div>

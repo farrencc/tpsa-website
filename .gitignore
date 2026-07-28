@@ -6,4 +6,5 @@ site/*.html
 # Don't ignore the main index.html file
 !site/index.html
 # Don't ignore COTHROM paper
-!site/cothrom-paper.html
+!site/cothrom-paper.html# Ignore Python bytecode caches
+__pycache__/

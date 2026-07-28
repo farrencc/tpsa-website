@@ -4,30 +4,65 @@ name: Build and Deploy TPSA Website
 on:
   push:
     branches: [ main ]
+  schedule:
+    # Mondays 06:15 UTC — refreshes the statespend.ie figures on the Problem
+    # Solving page and redeploys, so they stay current without anyone pushing.
+    - cron: '15 6 * * 1'
   workflow_dispatch: # Allows manual triggering
+
+permissions:
+  contents: write # commit the refreshed figures back to main, and publish to production
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout source code
       uses: actions/checkout@v4
-      
+      with:
+        ref: ${{ github.event_name == 'schedule' && 'main' || github.ref }}
+
+    # Pulls the live SPARÁN totals from statespend.ie into
+    # site/problem-solving/index.html. Never fatal: if statespend.ie is
+    # unreachable the script leaves the previous figures in place and the
+    # deploy carries on with them.
+    - name: Refresh statespend.ie figures
+      id: statespend
+      continue-on-error: true
+      run: python3 scripts/statespend_stats.py
+
+    - name: Commit refreshed figures
+      if: steps.statespend.outcome == 'success'
+      continue-on-error: true
+      run: |
+        if git diff --quiet -- site/problem-solving/index.html; then
+          echo "Figures already current, nothing to commit."
+          exit 0
+        fi
+        git config user.name 'tpsa-webmaster[bot]'
+        git config user.email 'webmaster@tpsa.ie'
+        git add site/problem-solving/index.html
+        git commit -m 'Refresh statespend.ie figures on the Problem Solving page'
+        # Land on whatever main looks like now; the deploy below uses the
+        # working tree either way, so a failure here costs nothing.
+        git pull --rebase --autostash origin "${GITHUB_REF_NAME:-main}"
+        git push origin "HEAD:${GITHUB_REF_NAME:-main}"
+
     - name: Build website using tpsa.sh
       run: |
         echo "Building TPSA website using ./tpsa.sh"
-        
+
         # Make the script executable
         chmod +x ./tpsa.sh
-        
+
         # Run the build script (without 'server' argument)
         ./tpsa.sh
-        
+
         echo "Build completed!"
         echo "Generated files:"
         ls -la site/
-        
+
     - name: Deploy to production branch
       uses: peaceiris/actions-gh-pages@v4
       with:

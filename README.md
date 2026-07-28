@@ -45,6 +45,8 @@ The site uses a template-based architecture with reusable header and footer comp
 ├── templates/              # Site structure (edit these)
 │   ├── header.html         # Navigation, <head>, opening <body>
 │   └── footer.html         # Footer, closing </body></html>
+├── scripts/                # Build-time helpers
+│   └── statespend_stats.py # Pulls the SPARÁN figures from statespend.ie
 ├── .github/workflows/      # GitHub Actions for deployment
 │   └── build-deploy.yml    # Automated build and deploy workflow
 ├── .gitignore              # Git ignore patterns
@@ -146,6 +148,21 @@ The constitution page features a bilingual English/Irish toggle system:
 ### Responsive Design
 The site is fully responsive with breakpoints at 650px and 490px for mobile devices.
 
+### Live SPARÁN Figures
+The headline statistics on the Problem Solving page — spending traced,
+transactions consolidated, state entities covered — are pulled from
+[statespend.ie](https://statespend.ie/) rather than typed in. `scripts/statespend_stats.py`
+fetches the live totals and rewrites every element with a `data-statespend`
+attribute in `site/problem-solving/index.html`. The deploy workflow runs it
+before every build and again every Monday, so the numbers stay current without
+anyone editing them. If statespend.ie is down the previous figures deploy
+unchanged. Full detail in `site/problem-solving/README.md`; to refresh by hand:
+
+```bash
+python3 scripts/statespend_stats.py           # rewrite the figures
+python3 scripts/statespend_stats.py --check   # report drift without writing
+```
+
 ### Interactive Elements
 - **Problem Solving page**: Features a 3D Halvorsen attractor visualization with React
 - **Animations**: Fade-in effects and letter-by-letter animations
@@ -187,10 +204,15 @@ git push origin feature-branch-name
 
 The site uses automated deployment through GitHub Actions. The workflow:
 
-1. **Trigger**: Push to `main` branch or manual workflow dispatch
-2. **Build**: GitHub Actions runs `tpsa.sh` to generate all pages
-3. **Deploy**: Generated files are pushed to `production` branch
-4. **Live**: Plesk automatically pulls changes and updates tpsa.ie
+1. **Trigger**: Push to `main` branch, the weekly Monday 06:15 UTC schedule, or manual workflow dispatch
+2. **Refresh**: `scripts/statespend_stats.py` pulls the current SPARÁN figures from statespend.ie (never fatal — see *Live SPARÁN Figures* above)
+3. **Build**: GitHub Actions runs `tpsa.sh` to generate all pages
+4. **Deploy**: Generated files are pushed to `production` branch
+5. **Live**: Plesk automatically pulls changes and updates tpsa.ie
+
+The weekly run exists so the statespend.ie figures refresh on their own. If the
+figures changed, the workflow also commits them back to `main` so the source and
+the live site agree.
 
 The entire process usually takes 2-3 minutes from push to live site. The deployment configuration is in `.github/workflows/build-deploy.yml`.
 
