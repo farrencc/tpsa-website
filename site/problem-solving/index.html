@@ -125,19 +125,67 @@
       <div class="pillar" data-reveal>
         <span class="pillar__idx">Our Themes</span>
         <h3>What we work on</h3>
+        <!-- Each theme expands to the projects working under it. To add a written
+             introduction to a theme, drop a <p class="theme__desc"> in ahead of
+             the "Projects under this theme" label. -->
         <ol class="pillar__list">
-          <li><span class="pillar__n">01</span><span class="pillar__t">Democratic Integrity and Transparency</span></li>
-          <li><span class="pillar__n">02</span><span class="pillar__t">Education and Upskilling</span></li>
-          <li><span class="pillar__n">03</span><span class="pillar__t">Foresight and Preparedness</span></li>
+          <li class="theme" id="theme-transparency">
+            <button class="pillar__row theme__row" type="button" id="theme-btn-transparency" data-theme="transparency" aria-expanded="false" aria-controls="theme-body-transparency">
+              <span class="pillar__n">01</span>
+              <span class="pillar__t">Democratic Integrity and Transparency</span>
+              <span class="theme__chev" aria-hidden="true"></span>
+            </button>
+            <div class="theme__body" id="theme-body-transparency" role="region" aria-labelledby="theme-btn-transparency">
+              <div class="theme__inner">
+                <div class="theme__lab">Projects under this theme</div>
+                <ul class="theme__projects">
+                  <li><button type="button" class="theme__proj" data-project="payments"><b>SPARÁN</b><span>Public finance</span></button></li>
+                  <li><button type="button" class="theme__proj" data-project="cothrom"><b>COTHROM</b><span>Electoral systems</span></button></li>
+                  <li><button type="button" class="theme__proj" data-project="advert"><b>Political Advertising</b><span>Democratic integrity</span></button></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="theme" id="theme-education">
+            <button class="pillar__row theme__row" type="button" id="theme-btn-education" data-theme="education" aria-expanded="false" aria-controls="theme-body-education">
+              <span class="pillar__n">02</span>
+              <span class="pillar__t">Education and Upskilling</span>
+              <span class="theme__chev" aria-hidden="true"></span>
+            </button>
+            <div class="theme__body" id="theme-body-education" role="region" aria-labelledby="theme-btn-education">
+              <div class="theme__inner">
+                <div class="theme__lab">Projects under this theme</div>
+                <ul class="theme__projects">
+                  <li><button type="button" class="theme__proj" data-project="ecnetica"><b>The Ecnetica Project</b><span>Education</span></button></li>
+                  <li><button type="button" class="theme__proj" data-project="tpsai"><b><span class="tpsai">TPSA<b class="tpsai__i">I</b></span></b><span>AI ethics &amp; compliance</span></button></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="theme" id="theme-foresight">
+            <button class="pillar__row theme__row" type="button" id="theme-btn-foresight" data-theme="foresight" aria-expanded="false" aria-controls="theme-body-foresight">
+              <span class="pillar__n">03</span>
+              <span class="pillar__t">Foresight and Preparedness</span>
+              <span class="theme__chev" aria-hidden="true"></span>
+            </button>
+            <div class="theme__body" id="theme-body-foresight" role="region" aria-labelledby="theme-btn-foresight">
+              <div class="theme__inner">
+                <div class="theme__lab">Projects under this theme</div>
+                <ul class="theme__projects">
+                  <li><button type="button" class="theme__proj" data-project="praxis"><b>PRAXIS</b><span>Infrastructure</span></button></li>
+                </ul>
+              </div>
+            </div>
+          </li>
         </ol>
       </div>
       <div class="pillar pillar--roles" data-reveal style="--rd:.08s">
         <span class="pillar__idx">Our Roles</span>
         <h3>How we work</h3>
         <ol class="pillar__list">
-          <li><span class="pillar__n">01</span><span class="pillar__t">Bridging academic insight and governance</span></li>
-          <li><span class="pillar__n">02</span><span class="pillar__t">Developing citizen democratic involvement in the information age</span></li>
-          <li><span class="pillar__n">03</span><span class="pillar__t">Evidencing the capability of non-profit business models in Ireland</span></li>
+          <li><span class="pillar__row"><span class="pillar__n">01</span><span class="pillar__t">Bridging academic insight and governance</span></span></li>
+          <li><span class="pillar__row"><span class="pillar__n">02</span><span class="pillar__t">Developing citizen democratic involvement in the information age</span></span></li>
+          <li><span class="pillar__row"><span class="pillar__n">03</span><span class="pillar__t">Evidencing the capability of non-profit business models in Ireland</span></span></li>
         </ol>
       </div>
     </div>
@@ -219,7 +267,7 @@
         <div class="px__info">
           <div class="px__meta">
             <div><span>Field</span>Public finance</div>
-            <div><span>Theme</span><b class="px__theme">Transparency</b></div>
+            <div><span>Theme</span><button type="button" class="px__theme" data-theme="transparency">Transparency</button></div>
             <div><span>Status</span><b class="px__status">Live</b></div>
             <div><span>Working with</span>200+ state entities</div>
             <div><span>Method</span>Open data</div>
@@ -264,7 +312,7 @@
         <div class="px__info">
           <div class="px__meta">
             <div><span>Field</span>Electoral systems</div>
-            <div><span>Theme</span><b class="px__theme">Transparency</b></div>
+            <div><span>Theme</span><button type="button" class="px__theme" data-theme="transparency">Transparency</button></div>
             <div><span>Status</span><b class="px__status">In development</b></div>
             <div><span>Working with</span>ICHEC</div>
             <div><span>Method</span>Potts Model · Simulated annealing</div>
@@ -308,7 +356,7 @@
         <div class="px__info">
           <div class="px__meta">
             <div><span>Field</span>Infrastructure</div>
-            <div><span>Theme</span><b class="px__theme">Foresight</b></div>
+            <div><span>Theme</span><button type="button" class="px__theme" data-theme="foresight">Foresight</button></div>
             <div><span>Status</span><b class="px__status">Research Ongoing</b></div>
             <div><span>Working with</span>TCD · ICHEC</div>
             <div><span>Method</span>Physics-Inspired Population Dynamics Modelling</div>
@@ -340,7 +388,7 @@
         <div class="px__info">
           <div class="px__meta">
             <div><span>Field</span>Education</div>
-            <div><span>Theme</span><b class="px__theme">Education</b></div>
+            <div><span>Theme</span><button type="button" class="px__theme" data-theme="education">Education</button></div>
             <div><span>Status</span><b class="px__status">Development</b></div>
             <div><span>Working with</span> TCD · DCU</div>
             <div><span>Method</span>Animation · Interactivity &amp; Knowledge Tracing</div>
@@ -372,7 +420,7 @@
         <div class="px__info">
           <div class="px__meta">
             <div><span>Field</span>AI ethics &amp; compliance</div>
-            <div><span>Theme</span><b class="px__theme">Education</b></div>
+            <div><span>Theme</span><button type="button" class="px__theme" data-theme="education">Education</button></div>
             <div><span>Status</span><b class="px__status">Booking</b></div>
             <div><span>Working with</span>For SMEs · Jennifer Waters</div>
             <div><span>Method</span>EU AI Act · Irish law</div>
@@ -405,7 +453,7 @@
         <div class="px__info">
           <div class="px__meta">
             <div><span>Field</span>Democratic integrity</div>
-            <div><span>Theme</span><b class="px__theme">Transparency</b></div>
+            <div><span>Theme</span><button type="button" class="px__theme" data-theme="transparency">Transparency</button></div>
             <div><span>Status</span><b class="px__status">Ready for the next election</b></div>
             <div><span>Working with</span>Regulatory compliance</div>
             <div><span>Method</span>Independent audit</div>
