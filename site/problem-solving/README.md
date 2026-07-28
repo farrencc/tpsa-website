@@ -78,6 +78,27 @@ A few conventions the JavaScript relies on:
   Each card's bio sits in `data-bio`; the modal reads it from there, and
   `data-member` is the slug other sections use to open that profile. Group
   colours are defined once as `--group` at the bottom of `css/team.css`.
+
+  The modal's buttons come off the same card, all of them optional:
+
+  | attribute | effect |
+  | --- | --- |
+  | `data-email` | address the email button writes to. Defaults to `problemsolving@tpsa.ie`, and only that shared address gets a `For <name>` subject line — a personal address is written to directly. |
+  | `data-email-label` | the email button's whole text, including any glyph you want in front of it. Without it the label is `✉ Email <first word of the name>`, which reads badly for anyone whose name does not split on a space that way — set it rather than live with the guess. |
+  | `data-linkedin` | profile URL. Adds a blue LinkedIn button; `data-linkedin-label` overrides its text. |
+  | `data-github` | profile URL. Adds a black GitHub button; `data-github-label` overrides its text. |
+
+  LinkedIn and GitHub appear only for the members that carry a URL, in that
+  order after the email button, and open in a new tab. So a fully specified
+  card looks like:
+
+  ```html
+  <button class="tm" style="--tmd:0s" data-member="ada-lovelace"
+          data-bio="…"
+          data-email="ada@tpsa.ie" data-email-label="✉ Write to Ada"
+          data-linkedin="https://www.linkedin.com/in/ada-lovelace/"
+          data-github="https://github.com/adalovelace">
+  ```
 - **Press** — add a `.pr` block inside `.spine`, newest first, alternating
   `pr--l` / `pr--r`. `data-visible` on `.spine` caps how many show; once there
   are more, the three-diamond terminus becomes an expand button on its own.
