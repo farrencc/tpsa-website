@@ -87,17 +87,20 @@ A few conventions the JavaScript relies on:
   | `data-email-label` | the email button's whole text, including any glyph you want in front of it. Without it the label is `✉ Email <first word of the name>`, which reads badly for anyone whose name does not split on a space that way — set it rather than live with the guess. |
   | `data-linkedin` | profile URL. Adds a blue LinkedIn button; `data-linkedin-label` overrides its text. |
   | `data-github` | profile URL. Adds a black GitHub button; `data-github-label` overrides its text. |
+  | `data-website` | personal site. Adds a purple button with a globe; `data-website-label` overrides its text. |
 
-  LinkedIn and GitHub appear only for the members that carry a URL, in that
-  order after the email button, and open in a new tab. So a fully specified
-  card looks like:
+  The three link buttons appear only for the members that carry a URL, always
+  in that order after the email button — LinkedIn, GitHub, then website
+  furthest right — and open in a new tab. So a fully specified card looks
+  like:
 
   ```html
   <button class="tm" style="--tmd:0s" data-member="ada-lovelace"
           data-bio="…"
           data-email="ada@tpsa.ie" data-email-label="✉ Write to Ada"
           data-linkedin="https://www.linkedin.com/in/ada-lovelace/"
-          data-github="https://github.com/adalovelace">
+          data-github="https://github.com/adalovelace"
+          data-website="https://adalovelace.ie">
   ```
 - **Press** — add a `.pr` block inside `.spine`, newest first, alternating
   `pr--l` / `pr--r`. `data-visible` on `.spine` caps how many show; once there
