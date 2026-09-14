@@ -1,7 +1,7 @@
 /* featured in — chronological spine */
 .sec--press{background:var(--surface-alt,#f9fafb);position:relative;overflow:hidden}
 .spine{position:relative;margin-top:8px;display:flex;flex-direction:column;gap:clamp(44px,6vw,84px)}
-.spine__rule{position:absolute;left:50%;top:6px;bottom:6px;width:2px;margin-left:-1px;background:linear-gradient(var(--green-500),var(--purple-500));transform:scaleY(0);transform-origin:top;transition:transform 1.5s var(--ease)}
+.spine__rule{pointer-events:none;position:absolute;left:50%;top:6px;bottom:6px;width:2px;margin-left:-1px;background:linear-gradient(var(--green-500),var(--purple-500));transform:scaleY(0);transform-origin:top;transition:transform 1.5s var(--ease)}
 .spine.is-drawn .spine__rule{transform:scaleY(1)}
 .pr{display:grid;grid-template-columns:1fr 108px 1fr;align-items:center}
 .pr__mid{grid-column:2;grid-row:1;position:relative;display:flex;flex-direction:column;align-items:center;gap:10px}
@@ -20,13 +20,15 @@
 .pr__head{display:block;font-size:clamp(19px,1.7vw,24px);font-weight:700;line-height:1.2;letter-spacing:-.015em;color:var(--ink);text-wrap:pretty;margin-bottom:0}
 .pr__head:hover{color:var(--purple-700)}
 .pr__with{font-size:15px;line-height:1.5;color:var(--ink-soft);margin-top:12px}
-.pr__person{font:inherit;color:var(--purple-600);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-decoration-color:var(--purple-300);text-underline-offset:3px;transition:color .3s var(--ease),text-decoration-color .3s var(--ease)}
-.pr__person:hover{color:var(--purple-800);text-decoration-color:var(--purple-600)}
-.pr__person:focus-visible{outline:2px solid var(--purple-500);outline-offset:3px;border-radius:2px}
+.pr__person,.pr__with a{font:inherit;color:var(--purple-600);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-decoration-color:var(--purple-300);text-underline-offset:3px;transition:color .3s var(--ease),text-decoration-color .3s var(--ease)}
+.pr__person:hover,.pr__with a:hover{color:var(--purple-800);text-decoration-color:var(--purple-600)}
+.pr__person:focus-visible,.pr__with a:focus-visible{outline:2px solid var(--purple-500);outline-offset:3px;border-radius:2px}
 .pr__quote{position:relative;font-size:clamp(16px,1.35vw,18.5px);line-height:1.55;color:var(--purple-800,#3c096c);border-top:1px solid var(--border,rgba(16,0,43,.12));padding-top:34px;margin:38px 0 18px}
 .pr__quote::before{content:"\201c";position:absolute;top:0;transform:translateY(-52%);font-size:64px;line-height:1;color:var(--green-500);opacity:.32;pointer-events:none}
 .pr--l .pr__quote::before{right:-6px}
 .pr--r .pr__quote::before{left:-6px}
+/* a card with no pull quote loses the quote block's margin, so the closing link needs its own */
+.pr__with+.pr__link{margin-top:18px}
 .pr__link{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--purple-600)}
 .pr__link span{transition:transform .3s var(--ease)}
 .pr__link:hover{color:var(--green-600)}
@@ -41,7 +43,7 @@
 .pr[hidden]{display:none}
 .spine__end{display:flex;justify-content:center;margin-top:4px}
 .spine__more[hidden],.spine__cap[hidden]{display:none}
-.spine__more,.spine__cap{display:inline-flex;flex-direction:column;align-items:center;gap:12px;background:var(--surface-alt,#f9fafb);border:none;padding:12px 14px 0;cursor:pointer;font:inherit;color:var(--purple-600)}
+.spine__more,.spine__cap{position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:12px;background:var(--surface-alt,#f9fafb);border:none;padding:12px 14px 0;cursor:pointer;font:inherit;color:var(--purple-600)}
 .spine__cap{cursor:default}
 .spine__dots{display:flex;flex-direction:column;align-items:center;gap:8px}
 .spine__dots i{width:9px;height:9px;background:var(--purple-400);transform:rotate(45deg);transition:transform .3s var(--ease),background .3s var(--ease)}
