@@ -39,7 +39,7 @@ export function initPress() {
     items.forEach((el, i) => { el.hidden = !expanded && i >= visible; });
     label.textContent = expanded
       ? "Show fewer"
-      : `${hiddenCount} earlier mention${hiddenCount === 1 ? "" : "s"}`;
+      : `Earlier mention${hiddenCount === 1 ? "" : "s"}`;
     more.setAttribute("aria-expanded", String(expanded));
   };
   apply();
