@@ -43,7 +43,7 @@
 .pr[hidden]{display:none}
 .spine__end{display:flex;justify-content:center;margin-top:4px}
 .spine__more[hidden],.spine__cap[hidden]{display:none}
-.spine__more,.spine__cap{display:inline-flex;flex-direction:column;align-items:center;gap:12px;background:var(--surface-alt,#f9fafb);border:none;padding:12px 14px 0;cursor:pointer;font:inherit;color:var(--purple-600)}
+.spine__more,.spine__cap{position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:12px;background:var(--surface-alt,#f9fafb);border:none;padding:12px 14px 0;cursor:pointer;font:inherit;color:var(--purple-600)}
 .spine__cap{cursor:default}
 .spine__dots{display:flex;flex-direction:column;align-items:center;gap:8px}
 .spine__dots i{width:9px;height:9px;background:var(--purple-400);transform:rotate(45deg);transition:transform .3s var(--ease),background .3s var(--ease)}
